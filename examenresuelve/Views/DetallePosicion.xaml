@@ -5,14 +5,30 @@
 	<ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
+				<RowDefinition Height="100" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <local:CustomMap Posicion="{Binding Posicion}" Sucursal="{Binding Sucursal}" WidthRequest="960" HeightRequest="100" VerticalOptions="FillAndExpand"/>
-            <!--<maps:Map WidthRequest="320" HeightRequest="200"
-            x:Name="MyMap"
-            IsShowingUser="true"
-            MapType="Hybrid"
-            />-->
+			<ScrollView Grid.Row="0">
+				<Grid Padding="10">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="10" />
+		                <RowDefinition Height="1" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="10" />
+		            </Grid.RowDefinitions>	
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Label Grid.Row="0" Grid.ColumnSpan="2" Style="{DynamicResource labelSucursalTitle}" Text="{Binding SucursalSel.SUC_NAME}" />
+					<BoxView Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="1" Color="#cccccc"/>
+					<Image Grid.Row="2" Grid.Column="0" Source="location"/>
+					<Label Grid.Row="2" Grid.Column="1" Style="{DynamicResource labelSucursalDet}" Text="{Binding SucursalSel.SUC_ADRESS}" />
+					<Image Grid.Row="3" Grid.Column="0" Source="phone"/>
+					<Label Grid.Row="3" Grid.Column="1" Style="{DynamicResource labelSucursalDet}" Text="{Binding SucursalSel.PHONE}" />
+				</Grid>
+			</ScrollView>
+            <local:CustomMap Grid.Row="1" HasZoomEnabled="true" Posicion="{Binding Posicion}" Sucursal="{Binding Sucursal}" WidthRequest="960" HeightRequest="100" VerticalOptions="FillAndExpand"/>
         </Grid>
 	</ContentPage.Content>
 </ContentPage>

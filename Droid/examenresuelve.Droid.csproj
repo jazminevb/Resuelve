@@ -190,6 +190,8 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable\pinresuelve.png" />
     <AndroidResource Include="Resources\drawable\pinaqui.png" />
+    <AndroidResource Include="Resources\drawable\phone.png" />
+    <AndroidResource Include="Resources\drawable\location.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dependencies\" />

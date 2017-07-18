@@ -10,10 +10,13 @@ namespace examenresuelve.iOS
 {
 	public class GeoiOS : IGeo
 	{
+		//Esta es la clase que permite los servicios de CoreLocation
 		protected CLLocationManager locMgr;
-		//public event EventHandler<GeoEventArgs> GeoUpdated = delegate { };
 		public Action<Geo> LatLonUpd { get; set; }
 
+		/// <summary>
+		/// Inicializa el componente y requiere permisos al usuario (de requerirlo)
+		/// </summary>
 		public GeoiOS()
 		{
 			this.locMgr = new CLLocationManager();
@@ -21,8 +24,9 @@ namespace examenresuelve.iOS
 
 			if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
 			{
-				locMgr.RequestAlwaysAuthorization(); // works in background
-													 //locMgr.RequestWhenInUseAuthorization (); // only in foreground
+				//Se usa este para que pueda ser en background
+				locMgr.RequestAlwaysAuthorization();
+				//locMgr.RequestWhenInUseAuthorization ();
 			}
 
 			if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
@@ -31,28 +35,24 @@ namespace examenresuelve.iOS
 			}
 		}
 
+		/// <summary>
+		/// Inicia el GPS para recibir location, y actualiza los datos hacia la UI por medio de "LatLonUpd"
+		/// </summary>
 		public void GetLatLon()
 		{
-			this.locMgr.LocationsUpdated += (sender, e) =>
+			if (CLLocationManager.LocationServicesEnabled)
 			{
-				Geo g = new Geo { latitude = (Decimal)e.Locations[0].Coordinate.Latitude, longitud = (Decimal)e.Locations[0].Coordinate.Longitude };
-				LatLonUpd(g);
-			};	
+				//precision en metros
+				locMgr.DesiredAccuracy = 1;
+				//recibimos cambios en la posicion
+				locMgr.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) =>
+				{
+					//Y creamos un objeto del tipo "Geo" para regresarlo a la UI
+					Geo g = new Geo { latitude = e.Locations[e.Locations.Length - 1].Coordinate.Latitude, longitud = e.Locations[e.Locations.Length - 1].Coordinate.Longitude };
+					LatLonUpd(g);
+				};
+				locMgr.StartUpdatingLocation();
+			}
 		}
 	}
-
-	/*public class GeoEventArgs : EventArgs
-	{
-		Geo geo;
-
-		public GeoEventArgs(Geo g)
-		{
-			geo = g;
-		}
-
-		//public CLLocation Location
-		//{
-		//	get { return location; }
-		//}
-	}*/
 }

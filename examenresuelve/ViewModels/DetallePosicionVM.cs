@@ -35,6 +35,9 @@ namespace examenresuelve
 			}
 		}
 
+		/// <summary>
+		/// Sucursal seleccionada desde la listview, genera el pin a mostrar en el mapa
+		/// </summary>
         private sucursal mSucursalSel;
         public sucursal SucursalSel
 		{
@@ -43,6 +46,7 @@ namespace examenresuelve
 			{
 				if (value != mSucursalSel)
 				{
+					Title = value.SUC_NAME;
 					Pin pin = new Pin
 					{
 						Type = PinType.Place,
@@ -51,11 +55,15 @@ namespace examenresuelve
 					};
                     Sucursal = pin;
 					mSucursalSel = value;
-					//OnPropertyChanged("mSucursalSel");
+                    OnPropertyChanged("SucursalSel");
 				}
 			}
 		}
 
+		/// <summary>
+		/// ViewModel para manejar las actualizaciones de ubicacion por GPS y mostrar en mapa
+		/// </summary>
+		/// <param name="diag">UserDialogs</param>
         public DetallePosicionVM(IUserDialogs diag) : base(diag)
         {
             Title = "Detalle";
@@ -63,6 +71,7 @@ namespace examenresuelve
 			if (plataforma != null)
 			{
 				Geo g = new Geo();
+				//Cuando se actualize la posicion se genera un nuevo pin
 				plataforma.LatLonUpd = delegate (Geo gtmp)
 				{
 					g = gtmp;
