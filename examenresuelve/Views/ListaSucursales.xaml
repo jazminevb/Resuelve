@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage Title="{Binding Title}" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="examenresuelve.ListaSucursales">
+	<ContentPage.Content>
+		<ListView x:Name="lstSucursales" SelectedItem="{Binding SelectedSucursal, Mode=TwoWay}" ItemsSource="{Binding lstSucursales}" HasUnevenRows="true">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<StackLayout Padding="10,5,10,5" Orientation="Horizontal">
+							<StackLayout Orientation="Vertical">
+								<Label Style="{DynamicResource rowsucursaltitle}" Text="{Binding SUC_NAME}"/>
+								<Label Style="{DynamicResource rowsucursaldet}" Text="{Binding SUC_ADRESS}"/>
+							</StackLayout>
+							<Image Source="flecha"/>
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</ContentPage.Content>
+</ContentPage>
