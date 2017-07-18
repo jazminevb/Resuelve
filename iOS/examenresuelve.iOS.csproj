@@ -153,6 +153,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Dependencies\" />
+    <Folder Include="Renderers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -166,6 +167,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Dependencies\GeoiOS.cs" />
+    <Compile Include="Renderers\CustomMapRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\flecha.png" />

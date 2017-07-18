@@ -14,6 +14,9 @@ using examenresuelve.Droid;
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace examenresuelve.Droid
 {
+	/// <summary>
+	/// Custom render para customizar los markers
+	/// </summary>
 	public class CustomMapRenderer : MapRenderer
 	{
         CustomMap formsMap;
@@ -39,6 +42,11 @@ namespace examenresuelve.Droid
 			NativeMap.SetInfoWindowAdapter(new CustomInfoWindow(Android.App.Application.Context.GetSystemService(Context.LayoutInflaterService) as Android.Views.LayoutInflater));
 		}
 
+		/// <summary>
+		/// Se 
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
 		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
@@ -71,35 +79,5 @@ namespace examenresuelve.Droid
 			}
 		}
 
-		/*void OnInfoWindowClick(object sender, GoogleMap.InfoWindowClickEventArgs e)
-		{
-			var customPin = GetCustomPin(e.Marker);
-			if (customPin == null)
-			{
-				throw new Exception("Custom pin not found");
-			}
-
-			if (!string.IsNullOrWhiteSpace(customPin.Url))
-			{
-				var url = Android.Net.Uri.Parse(customPin.Url);
-				var intent = new Intent(Intent.ActionView, url);
-				intent.AddFlags(ActivityFlags.NewTask);
-				Android.App.Application.Context.StartActivity(intent);
-			}
-		}*/
-
-
-		/*CustomPin GetCustomPin(Marker annotation)
-		{
-			var position = new Position(annotation.Position.Latitude, annotation.Position.Longitude);
-			foreach (var pin in customPins)
-			{
-				if (pin.Pin.Position == position)
-				{
-					return pin;
-				}
-			}
-			return null;
-		}*/
 	}
 }

@@ -50,6 +50,10 @@ namespace examenresuelve
             navigation = nav;
 		}
 
+		/// <summary>
+		/// Sirve para conectarse al servicio REST y llenar la lista de sucursales
+		/// </summary>
+		/// <returns>The carga.</returns>
 		public async Task IniciaCarga()
 		{
 			Ocupado = true;
