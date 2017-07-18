@@ -36,6 +36,7 @@ namespace examenresuelve.Droid
 			NativeMap.UiSettings.ZoomControlsEnabled = Map.HasZoomEnabled;
 			NativeMap.UiSettings.ZoomGesturesEnabled = Map.HasZoomEnabled;
 			NativeMap.UiSettings.ScrollGesturesEnabled = Map.HasScrollEnabled;
+			NativeMap.SetInfoWindowAdapter(new CustomInfoWindow(Android.App.Application.Context.GetSystemService(Context.LayoutInflaterService) as Android.Views.LayoutInflater));
 		}
 
 		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -87,49 +88,6 @@ namespace examenresuelve.Droid
 			}
 		}*/
 
-		/*public Android.Views.View GetInfoContents(Marker marker)
-		{
-			var inflater = Android.App.Application.Context.GetSystemService(Context.LayoutInflaterService) as Android.Views.LayoutInflater;
-			if (inflater != null)
-			{
-				Android.Views.View view;
-
-				var customPin = GetCustomPin(marker);
-				if (customPin == null)
-				{
-					throw new Exception("Custom pin not found");
-				}
-
-				if (customPin.Id == "Xamarin")
-				{
-					view = inflater.Inflate(Resource.Layout.XamarinMapInfoWindow, null);
-				}
-				else
-				{
-					view = inflater.Inflate(Resource.Layout.MapInfoWindow, null);
-				}
-
-				var infoTitle = view.FindViewById<TextView>(Resource.Id.InfoWindowTitle);
-				var infoSubtitle = view.FindViewById<TextView>(Resource.Id.InfoWindowSubtitle);
-
-				if (infoTitle != null)
-				{
-					infoTitle.Text = marker.Title;
-				}
-				if (infoSubtitle != null)
-				{
-					infoSubtitle.Text = marker.Snippet;
-				}
-
-				return view;
-			}
-			return null;
-		}*/
-
-		/*public Android.Views.View GetInfoWindow(Marker marker)
-		{
-			return null;
-		}*/
 
 		/*CustomPin GetCustomPin(Marker annotation)
 		{

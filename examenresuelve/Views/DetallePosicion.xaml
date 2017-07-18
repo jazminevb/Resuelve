@@ -11,7 +11,7 @@
 			<ScrollView Grid.Row="0">
 				<Grid Padding="10">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="10" />
+						<RowDefinition Height="20" />
 		                <RowDefinition Height="1" />
 						<RowDefinition Height="*" />
 						<RowDefinition Height="10" />
