@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="examenresuelve.App">
 	<Application.Resources>
         <ResourceDictionary>
@@ -6,28 +6,6 @@
                 <Setter Property="BarBackgroundColor" Value="#003764" />
                 <Setter Property="BarTextColor" Value="#8BC640" />
                 <Setter Property="Icon" Value="logo.png" />
-            </Style>
-            <Style x:Key="StackVerde" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="#339933" />
-            </Style>
-            <Style x:Key="StackRojo" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="#ff3333" />
-            </Style>
-            <Style x:Key="ButtonBlanco" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="TextColor" Value="Black" />
-            </Style>
-        	<Style x:Key="ButtonAzul" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#3498DB" />
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="BorderRadius" Value="0" />
-            </Style>
-            <Style x:Key="ButtonAlert" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#f2f2f2" />
-                <Setter Property="TextColor" Value="#666666" />
-                <Setter Property="FontSize" Value="10" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="BorderRadius" Value="0" />
             </Style>
             <Style x:Key="rowsucursaltitle" TargetType="Label">
             	<Setter Property="FontAttributes" Value="Bold" />
