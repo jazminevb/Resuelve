@@ -29,7 +29,7 @@ namespace examenresuelve.Droid
 			if (e.NewElement != null)
 			{
 				formsMap = (CustomMap)e.NewElement;
-				Control.GetMapAsync(this);
+				((MapView)Control).GetMapAsync(this);
 			}
 		}
 
@@ -39,7 +39,7 @@ namespace examenresuelve.Droid
 			NativeMap.UiSettings.ZoomControlsEnabled = Map.HasZoomEnabled;
 			NativeMap.UiSettings.ZoomGesturesEnabled = Map.HasZoomEnabled;
 			NativeMap.UiSettings.ScrollGesturesEnabled = Map.HasScrollEnabled;
-			NativeMap.SetInfoWindowAdapter(new CustomInfoWindow(Android.App.Application.Context.GetSystemService(Context.LayoutInflaterService) as Android.Views.LayoutInflater));
+            DibujaPines();
 		}
 
 		/// <summary>
@@ -52,23 +52,28 @@ namespace examenresuelve.Droid
 			base.OnElementPropertyChanged(sender, e);
 
 			if (e.PropertyName.Equals("VisibleRegion") && !isDrawn)
-			{
-				NativeMap.Clear();
+                DibujaPines();
+		}
+
+        private void DibujaPines(){
+            if (!isDrawn)
+            {
+                NativeMap.Clear();
                 foreach (var pin in formsMap.Pins)
-				{
-					var marker = new MarkerOptions();
-					marker.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
-					marker.SetTitle(pin.Label);
-					marker.SetSnippet(pin.Address);
+                {
+                    var marker = new MarkerOptions();
+                    marker.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
+                    marker.SetTitle(pin.Label);
+                    marker.SetSnippet(pin.Address);
                     if (pin.Label == "Ud esta aqui")
                         marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pinaqui));
                     else
                         marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pinresuelve));
-					NativeMap.AddMarker(marker);
-				}
-				isDrawn = true;
-			}
-		}
+                    NativeMap.AddMarker(marker);
+                }
+            }
+			isDrawn = true;
+        }
 
 		protected override void OnLayout(bool changed, int l, int t, int r, int b)
 		{
